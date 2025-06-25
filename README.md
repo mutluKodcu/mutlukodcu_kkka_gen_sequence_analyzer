@@ -359,10 +359,4 @@ cd mutlukodcu_kkka_gen_sequence_analyzer
 docker-compose up --build
 ```
 
-## 🧬 Katkı ve İletişim
-
-Bu proje akademik veya araştırma amaçlı geliştirilmektedir. Katkıda bulunmak isteyenler issue ya da pull request açabilir.
-
----
-
 Telif Hakkı © 2025 Mutlu Kodcu
