@@ -25,6 +25,7 @@ V Kafka ile analiz işlemlerini mikroservislere dağıtır.
 V! Karar destek (risk derecesi, önerilen adımlar) sağlar.
 
 ## 📁 Proje Dizin Yapısı
+```
 mutlukodcu_kkka_gen_sequence_analyzer/
 ├── backend/
 │   ├── auth-service/             → Giriş, rol yönetimi (Spring Security + JWT)
@@ -46,7 +47,7 @@ mutlukodcu_kkka_gen_sequence_analyzer/
 ├── Makefile                    → Kolay build ve docker-compose komutları için otomasyon
 ├── README.md                   → Proje hakkında genel bilgi ve kullanım dokümantasyonu
 └── LICENSE                     → Lisans bilgisi
-
+```
 
 ```
 mutlukodcu_kkka_gen_sequence_analyzer/
