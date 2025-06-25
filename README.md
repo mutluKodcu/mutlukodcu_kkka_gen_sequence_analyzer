@@ -1,4 +1,4 @@
-# Mutlukodcu KKKA Gen Sequence Analyzer
+# KKKA Gen Sequence Analyzer
 
 Bu proje, **Kırım Kongo Kanamalı Ateşi (KKKA)** hastalığına sebep olabilecek genetik varyasyonların analizini yapmak ve risk değerlendirmesi sağlamak için geliştirilmiş bir **biyoinformatik analiz platformudur**.
 
