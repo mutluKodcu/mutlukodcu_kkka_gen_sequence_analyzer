@@ -1,0 +1,9 @@
+package com.mutlukodcu.kkka.geneupload.repository;
+
+import com.mutlukodcu.kkka.geneupload.model.GeneSequence;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface GeneSequenceRepository extends JpaRepository<GeneSequence, Long> {
+}

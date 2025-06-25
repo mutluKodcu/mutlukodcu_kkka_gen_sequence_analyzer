@@ -1,0 +1,13 @@
+package com.mutlukodcu.kkka.kafkaconsumer;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+public class KafkaConsumerServiceTests {
+
+    @Test
+    public void contextLoads() {
+        // Basit context testi
+    }
+}

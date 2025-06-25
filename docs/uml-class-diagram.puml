@@ -1,0 +1,27 @@
+@startuml
+package com.mutlukodcu.kkka.gensequenceanalyzer.model {
+  class GenSequence {
+    + Long id
+    + String sequenceData
+    + Double riskScore
+    + Date analyzedAt
+  }
+}
+
+package com.mutlukodcu.kkka.gensequenceanalyzer.service {
+  class GenSequenceService {
+    + analyzeSequence(GenSequence sequence) : Double
+  }
+}
+
+package com.mutlukodcu.kkka.gensequenceanalyzer.controller {
+  class GenSequenceController {
+    + addSequence(GenSequenceDTO dto) : ResponseEntity
+    + getAnalysisResults() : List<GenSequenceDTO>
+  }
+}
+
+GenSequenceController --> GenSequenceService
+GenSequenceService --> GenSequence
+
+@enduml

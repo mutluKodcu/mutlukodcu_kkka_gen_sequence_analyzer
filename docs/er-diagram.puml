@@ -1,0 +1,21 @@
+@startuml
+entity users {
+  +id : Long [PK]
+  --
+  username : String
+  password : String
+  roles : String
+}
+
+entity gen_sequence {
+  +id : Long [PK]
+  --
+  sequence_data : String
+  risk_score : Double
+  analyzed_at : Date
+  user_id : Long [FK]
+}
+
+users ||--o{ gen_sequence : has
+
+@enduml

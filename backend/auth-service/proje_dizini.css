@@ -1,0 +1,39 @@
+backend/auth-service/
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/
+│   │   │       └── mutlukodcu/
+│   │   │           └── kkka/
+│   │   │               └── auth/
+│   │   │                   ├── AuthServiceApplication.java
+│   │   │                   ├── config/
+│   │   │                   │   ├── JwtUtil.java
+│   │   │                   │   └── SecurityConfig.java
+│   │   │                   ├── controller/
+│   │   │                   │   └── AuthController.java
+│   │   │                   ├── dto/
+│   │   │                   │   ├── LoginRequest.java
+│   │   │                   │   └── RegisterRequest.java
+│   │   │                   ├── model/
+│   │   │                   │   └── User.java
+│   │   │                   ├── repository/
+│   │   │                   │   └── UserRepository.java
+│   │   │                   ├── security/
+│   │   │                   │   ├── JwtAuthenticationFilter.java
+│   │   │                   │   └── JwtAuthorizationFilter.java
+│   │   │                   └── service/
+│   │   │                       └── AuthService.java
+│   │   └── resources/
+│   │       ├── application.yml
+│   │       └── static/
+│   └── test/
+│       └── java/
+│           └── com/
+│               └── mutlukodcu/
+│                   └── kkka/
+│                       └── auth/
+│                           └── AuthServiceTests.java
+├── Dockerfile
+├── pom.xml
+└── README.md

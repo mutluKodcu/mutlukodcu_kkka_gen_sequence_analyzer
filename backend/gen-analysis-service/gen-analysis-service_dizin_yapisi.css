@@ -1,0 +1,37 @@
+gen-analysis-service/
+├── Dockerfile
+├── pom.xml
+├── README.md
+└── src/
+    ├── main/
+    │   ├── java/
+    │   │   └── com/
+    │   │       └── mutlukodcu/
+    │   │           └── kkka/
+    │   │               └── genanalysis/
+    │   │                   ├── GenAnalysisServiceApplication.java
+    │   │                   ├── config/
+    │   │                   │   └── KafkaProducerConfig.java
+    │   │                   ├── controller/
+    │   │                   │   └── AnalysisController.java
+    │   │                   ├── dto/
+    │   │                   │   └── AnalysisRequestDTO.java
+    │   │                   ├── exception/
+    │   │                   │   └── AnalysisException.java
+    │   │                   ├── model/
+    │   │                   │   └── AnalysisResult.java
+    │   │                   ├── repository/
+    │   │                   │   └── AnalysisResultRepository.java
+    │   │                   ├── service/
+    │   │                   │   └── AnalysisService.java
+    │   │                   └── util/
+    │   │                       └── BayesAnalyzer.java
+    │   └── resources/
+    │       └── application.yml
+    └── test/
+        └── java/
+            └── com/
+                └── mutlukodcu/
+                    └── kkka/
+                        └── genanalysis/
+                            └── GenAnalysisServiceApplicationTests.java

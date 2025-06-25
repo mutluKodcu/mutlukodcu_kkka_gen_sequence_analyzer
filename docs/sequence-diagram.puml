@@ -1,0 +1,18 @@
+@startuml
+actor Kullanici
+participant Frontend
+participant BackendAPI
+participant KafkaProducer
+participant KafkaConsumer
+participant GenSequenceService
+participant PostgreSQL
+
+Kullanici -> Frontend : Gen sekansı yükle
+Frontend -> BackendAPI : REST API çağrısı
+BackendAPI -> KafkaProducer : Gen verisini gönder
+KafkaProducer -> KafkaConsumer : Mesaj iletimi
+KafkaConsumer -> GenSequenceService : Analiz başlat
+GenSequenceService -> PostgreSQL : Analiz sonuçlarını kaydet
+BackendAPI -> Frontend : Analiz sonuçlarını döndür
+Frontend -> Kullanici : Sonuçları göster
+@enduml

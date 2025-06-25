@@ -1,0 +1,34 @@
+/*
+kafka-consumer-service/
+├── Dockerfile               /* Docker imajı oluşturmak için yapılandırma */
+├── pom.xml                  /* Maven bağımlılık ve proje ayarları */
+├── README.md                /* Modül hakkında dokümantasyon */
+
+└── src/
+    ├── main/
+    │   ├── java/
+    │   │   └── com/
+    │   │       └── mutlukodcu/
+    │   │           └── kkka/
+    │   │               └── kafkaconsumer/
+    │   │                   ├── KafkaConsumerApplication.java      /* Uygulamanın giriş noktası */
+    │   │                   ├── config/
+    │   │                   │   └── KafkaConsumerConfig.java        /* Kafka consumer konfigürasyonu */
+    │   │                   ├── consumer/
+    │   │                   │   └── GeneSequenceKafkaListener.java  /* Kafka mesajlarını dinleyen listener */
+    │   │                   ├── model/
+    │   │                   │   └── GeneSequencePayload.java        /* Kafka mesaj modeli (DTO) */
+    │   │                   ├── service/
+    │   │                   │   └── AnalysisProcessorService.java   /* Analiz işlem mantığı */
+    │   │                   └── util/
+    │   │                       └── LoggingUtils.java               /* Loglama yardımcı sınıf */
+    │   └── resources/
+    │       └── application.yml                                  /* Servis konfigürasyonu (Kafka, log vb.) */
+    └── test/
+        └── java/
+            └── com/
+                └── mutlukodcu/
+                    └── kkka/
+                        └── kafkaconsumer/
+                            └── KafkaConsumerServiceTests.java         /* Birim testler */
+*/

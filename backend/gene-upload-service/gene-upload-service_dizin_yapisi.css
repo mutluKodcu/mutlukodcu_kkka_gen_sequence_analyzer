@@ -1,0 +1,35 @@
+gene-upload-service/
+├── Dockerfile
+├── pom.xml
+├── README.md
+└── src/
+    ├── main/
+    │   ├── java/
+    │   │   └── com/
+    │   │       └── mutlukodcu/
+    │   │           └── kkka/
+    │   │               └── geneupload/
+    │   │                   ├── GeneUploadServiceApplication.java
+    │   │                   ├── config/
+    │   │                   │   └── GeneUploadConfig.java
+    │   │                   ├── controller/
+    │   │                   │   └── GeneUploadController.java
+    │   │                   ├── dto/
+    │   │                   │   └── GeneUploadResponseDTO.java
+    │   │                   ├── model/
+    │   │                   │   └── GeneSequence.java
+    │   │                   ├── repository/
+    │   │                   │   └── GeneSequenceRepository.java
+    │   │                   ├── service/
+    │   │                   │   └── GeneUploadService.java
+    │   │                   └── util/
+    │   │                       └── FileParserUtil.java
+    │   └── resources/
+    │       └── application.yml
+    └── test/
+        └── java/
+            └── com/
+                └── mutlukodcu/
+                    └── kkka/
+                        └── geneupload/
+                            └── GeneUploadServiceApplicationTests.java

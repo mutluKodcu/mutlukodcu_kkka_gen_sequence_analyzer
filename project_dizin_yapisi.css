@@ -1,0 +1,251 @@
+mutlukodcu_kkka_gen_sequence_analyzer/
+├── backend/
+│   ├── auth-service/             → Giriş, rol yönetimi (Spring Security + JWT)
+│   ├── gene-upload-service/      → Excel/JSON/FASTA dosya yükleme (Apache POI)
+│   ├── analysis-service/         → Bayes Modeli ile gen analiz + PostgreSQL
+│   ├── report-service/           → Excel çıktısı + analiz sonucu
+│   ├── kafka-consumer-service/   → Asenkron analizler için Kafka tüketicisi
+│   ├── api-gateway/              → Tüm microservis isteklerinin önündeki Gateway. JWT doğrulama, rota yönetimi, Swagger entegrasyonu
+│   ├── shared-lib/               → Ortak DTO, sabitler ve Kafka event modelleri yer alır
+│   ├── discovery-service/        → Servislerin otomatik keşfi için Eureka veya benzeri servis keşif aracı
+│   ├── notification-service/     → Analiz sonuçlarının kullanıcıya bildirilmesi için bildirim servisi
+│
+├── frontend/                     → ReactJS + Bootstrap 5 tabanlı kullanıcı arayüzü
+│
+├── docs/                        → Proje mimari diyagramları, UML, ER ve Sequence diagramları
+│
+├── docker-compose.yml           → Tüm servislerin Docker konteyner tanımları
+├── init.sql                     → PostgreSQL için başlangıç tabloları ve demo veriler
+├── Makefile                    → Kolay build ve docker-compose komutları için otomasyon
+├── README.md                   → Proje hakkında genel bilgi ve kullanım dokümantasyonu
+└── LICENSE                     → Lisans bilgisi
+
+mutlukodcu_kkka_gen_sequence_analyzer/
+├── backend/
+│   ├── auth-service/
+│   │   ├── src/
+│   │   │   ├── main/
+│   │   │   │   ├── java/com/mutlukodcu/kkka/auth/
+│   │   │   │   │   ├── AuthServiceApplication.java
+│   │   │   │   │   ├── config/
+│   │   │   │   │   │   ├── SecurityConfig.java
+│   │   │   │   │   │   └── JwtUtil.java
+│   │   │   │   │   ├── controller/
+│   │   │   │   │   │   └── AuthController.java
+│   │   │   │   │   ├── dto/
+│   │   │   │   │   │   ├── LoginRequest.java
+│   │   │   │   │   │   └── RegisterRequest.java
+│   │   │   │   │   ├── model/
+│   │   │   │   │   │   └── User.java
+│   │   │   │   │   ├── repository/
+│   │   │   │   │   │   └── UserRepository.java
+│   │   │   │   │   ├── security/
+│   │   │   │   │   │   ├── JwtAuthenticationFilter.java
+│   │   │   │   │   │   └── JwtAuthorizationFilter.java
+│   │   │   │   │   └── service/
+│   │   │   │   │       └── AuthService.java
+│   │   │   │   └── resources/
+│   │   │   │       ├── application.yml
+│   │   │   │       └── static/
+│   │   │   └── test/java/com/mutlukodcu/kkka/auth/
+│   │   │       └── AuthServiceTests.java
+│   │   ├── Dockerfile
+│   │   ├── pom.xml
+│   │   └── README.md
+│   │
+│   ├── kafka-consumer-service/
+│   │   ├── src/
+│   │   │   ├── main/
+│   │   │   │   ├── java/com/mutlukodcu/kkka/kafkaconsumer/
+│   │   │   │   │   ├── KafkaConsumerApplication.java
+│   │   │   │   │   ├── config/
+│   │   │   │   │   │   └── KafkaConsumerConfig.java
+│   │   │   │   │   ├── consumer/
+│   │   │   │   │   │   └── GeneSequenceKafkaListener.java
+│   │   │   │   │   ├── model/
+│   │   │   │   │   │   └── GeneSequencePayload.java
+│   │   │   │   │   ├── service/
+│   │   │   │   │   │   └── AnalysisProcessorService.java
+│   │   │   │   │   └── util/
+│   │   │   │   │       └── LoggingUtils.java
+│   │   │   │   └── resources/
+│   │   │   │       └── application.yml
+│   │   │   └── test/java/com/mutlukodcu/kkka/kafkaconsumer/
+│   │   │       └── KafkaConsumerServiceTests.java
+│   │   ├── Dockerfile
+│   │   ├── pom.xml
+│   │   └── README.md
+│   │
+│   ├── gene-upload-service/
+│   │   ├── src/main/java/com/mutlukodcu/kkka/geneupload/
+│   │   │   ├── GeneUploadApplication.java
+│   │   │   ├── config/
+│   │   │   ├── controller/
+│   │   │   ├── dto/
+│   │   │   ├── model/
+│   │   │   ├── repository/
+│   │   │   └── service/
+│   │   └── resources/application.yml
+│   │   ├── Dockerfile
+│   │   ├── pom.xml
+│   │   └── README.md
+│   │
+│   ├── analysis-service/
+│   │   ├── src/
+│   │   │   ├── main/
+│   │   │   │   ├── java/com/mutlukodcu/kkka/analysis/
+│   │   │   │   │   ├── AnalysisServiceApplication.java
+│   │   │   │   │   ├── config/
+│   │   │   │   │   │   └── KafkaProducerConfig.java
+│   │   │   │   │   ├── controller/
+│   │   │   │   │   │   └── AnalysisController.java
+│   │   │   │   │   ├── dto/
+│   │   │   │   │   │   └── AnalysisRequestDTO.java
+│   │   │   │   │   ├── model/
+│   │   │   │   │   │   └── AnalysisResult.java
+│   │   │   │   │   ├── repository/
+│   │   │   │   │   │   └── AnalysisResultRepository.java
+│   │   │   │   │   ├── service/
+│   │   │   │   │   │   └── AnalysisService.java
+│   │   │   │   │   ├── util/
+│   │   │   │   │   │   └── BayesAnalyzer.java
+│   │   │   │   │   └── exception/
+│   │   │   │   │       └── AnalysisException.java
+│   │   │   │   └── resources/
+│   │   │   │       ├── application.yml
+│   │   │   │       └── static/
+│   │   │   └── test/
+│   │   │       └── java/com/mutlukodcu/kkka/analysis/
+│   │   │           └── AnalysisServiceTests.java
+│   │   ├── Dockerfile
+│   │   ├── pom.xml
+│   │   └── README.md
+│   │
+│   ├── report-service/
+│   │   ├── src/
+│   │   │   ├── main/
+│   │   │   │   ├── java/com/mutlukodcu/kkka/report/
+│   │   │   │   │   ├── ReportServiceApplication.java
+│   │   │   │   │   ├── config/
+│   │   │   │   │   │   └── SwaggerConfig.java
+│   │   │   │   │   ├── controller/
+│   │   │   │   │   │   └── ReportController.java
+│   │   │   │   │   ├── dto/
+│   │   │   │   │   │   └── ReportRequestDTO.java
+│   │   │   │   │   ├── service/
+│   │   │   │   │   │   └── ReportService.java
+│   │   │   │   │   ├── util/
+│   │   │   │   │   │   └── ExcelExporter.java
+│   │   │   │   │   └── exception/
+│   │   │   │   │       └── ReportException.java
+│   │   │   │   └── resources/
+│   │   │   │       ├── application.yml
+│   │   │   │       └── static/
+│   │   │   └── test/
+│   │   │       └── java/com/mutlukodcu/kkka/report/
+│   │   │           └── ReportServiceTests.java
+│   │   ├── Dockerfile
+│   │   ├── pom.xml
+│   │   └── README.md
+│   │
+│   ├── gensequenceanalyzer/
+│   │   ├── src/main/java/com/mutlukodcu/kkka/gensequenceanalyzer/
+│   │   │   ├── GenSequenceAnalyzerApplication.java
+│   │   │   ├── config/
+│   │   │   ├── controller/
+│   │   │   ├── dto/
+│   │   │   ├── exception/
+│   │   │   ├── kafka/
+│   │   │   ├── model/
+│   │   │   ├── repository/
+│   │   │   ├── security/
+│   │   │   ├── service/
+│   │   │   └── util/
+│   │   └── resources/application.yml
+│   │
+│   ├── api-gateway/
+│   │   ├── src/main/java/com/mutlukodcu/kkka/gateway/
+│   │   │   ├── ApiGatewayApplication.java
+│   │   │   ├── config/
+│   │   │   ├── filter/
+│   │   │   └── route/
+│   │   └── resources/application.yml
+│   │   ├── Dockerfile
+│   │   ├── pom.xml
+│   │   └── README.md
+│   │
+│   ├── shared-lib/
+│   │   ├── src/main/java/com/mutlukodcu/kkka/shared/
+│   │   │   ├── constants/
+│   │   │   │   └── AppConstants.java
+│   │   │   ├── dto/
+│   │   │   │   ├── GeneSequenceDTO.java
+│   │   │   │   ├── AnalysisResultDTO.java
+│   │   │   │   └── UserDTO.java
+│   │   │   ├── kafka/
+│   │   │   │   └── events/
+│   │   │   │       └── GeneSequenceEvent.java
+│   │   │   └── utils/
+│   │   │       └── DateUtils.java
+│   │   └── resources/
+│   │       └── application.yml
+│   │   ├── pom.xml
+│   │   └── README.md
+│   │
+│   ├── discovery-service/
+│   │   ├── src/
+│   │   │   ├── main/
+│   │   │   │   ├── java/com/mutlukodcu/kkka/discovery/
+│   │   │   │   │   ├── DiscoveryApplication.java
+│   │   │   │   │   ├── config/
+│   │   │   │   │   │   └── EurekaServerConfig.java
+│   │   │   │   │   └── controller/
+│   │   │   │   │       └── HealthCheckController.java
+│   │   │   │   └── resources/
+│   │   │   │       ├── application.yml
+│   │   │   │       └── bootstrap.yml
+│   │   │   └── test/
+│   │   │       └── java/com/mutlukodcu/kkka/discovery/
+│   │   │           └── DiscoveryServiceTests.java
+│   │   ├── Dockerfile
+│   │   ├── pom.xml
+│   │   └── README.md
+│   │
+│   └── notification-service/
+│       ├── src/main/java/com/mutlukodcu/kkka/notification/
+│       │   ├── NotificationApplication.java
+│       │   ├── config/
+│       │   ├── controller/
+│       │   ├── dto/
+│       │   ├── model/
+│       │   ├── repository/
+│       │   └── service/
+│       └── resources/application.yml
+│       ├── Dockerfile
+│       ├── pom.xml
+│       └── README.md
+│
+├── frontend/
+│   ├── public/
+│   └── src/
+│       ├── components/
+│       ├── pages/
+│       ├── services/
+│       └── utils/
+│   ├── package.json
+│   ├── README.md
+│   └── vite.config.js
+│
+├── docs/
+│   ├── architecture-diagram.puml
+│   ├── uml-class-diagram.puml
+│   ├── er-diagram.puml
+│   ├── sequence-diagram.puml
+│   └── README.md
+│
+├── docker-compose.yml
+├── init.sql
+├── Makefile
+├── README.md
+└── LICENSE
+

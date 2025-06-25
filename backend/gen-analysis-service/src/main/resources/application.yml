@@ -1,0 +1,39 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: gen-analysis-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/kkka_analysis_db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  kafka:
+    bootstrap-servers: localhost:9092
+
+kafka:
+  topic:
+    analysis-results: kkka.analysis.results
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
+    com.mutlukodcu.kkka.genanalysis: DEBUG

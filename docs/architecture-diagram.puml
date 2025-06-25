@@ -1,0 +1,36 @@
+@startuml
+skinparam componentStyle rectangle
+title KKKA Gen Sequence Analyzer - Mimari Diyagram
+
+actor Kullanici as User
+
+package "Frontend (ReactJS + Bootstrap 5)" {
+  component "Kullanıcı Arayüzü
+(Gen Sekansı Girişi,
+Analiz Sonuçları)" as Frontend
+}
+
+package "Backend (Spring Boot)" {
+  component "REST API
+(Spring Security + JWT)" as BackendAPI
+  component "Kafka Producer/Consumer" as KafkaComponent
+  component "İş Mantığı
+(Gen Analizi ve Risk Hesaplama)" as BusinessLogic
+}
+
+database "PostgreSQL DB" as DB
+
+cloud "Kafka & Zookeeper" as KafkaServer
+
+User --> Frontend : Gen Sekansı Girişi
+Frontend --> BackendAPI : REST API Çağrıları
+BackendAPI --> KafkaComponent : Gen Verisini Gönder
+KafkaServer --> KafkaComponent : Mesajları Taşı
+KafkaComponent --> BusinessLogic : Veriyi İşle
+BusinessLogic --> DB : Sonuçları Kaydet
+BackendAPI --> Frontend : Analiz Sonuçları
+BackendAPI ..> "Spring Security
+JWT" : Güvenlik
+KafkaComponent ..> KafkaServer : Mesajlaşma
+
+@enduml
