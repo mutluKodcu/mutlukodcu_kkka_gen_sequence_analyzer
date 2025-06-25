@@ -17,12 +17,12 @@ Ayrıca bu veriler üzerinden genetik ve coğrafi analizlerle haritalama ve ista
 - **Dokümantasyon**: Swagger UI
 
 ## 🧬 Senaryo:
-! Kullanıcı, genetik test sonuçlarını yükler (örneğin FASTA formatlı veya JSON/Excel). 
-!! Sistem: Gen sekanslarını analiz eder
-!!! Belirli gen motifleri üzerinden hastalık riskini Bayes modelleriyle hesaplar.
-!V Sonuçları kaydeder ve gösterir.
-V Kafka ile analiz işlemlerini mikroservislere dağıtır.
-V! Karar destek (risk derecesi, önerilen adımlar) sağlar.
+- Kullanıcı, genetik test sonuçlarını yükler (örneğin FASTA formatlı veya JSON/Excel). 
+- Sistem: Gen sekanslarını analiz eder
+- Belirli gen motifleri üzerinden hastalık riskini Bayes modelleriyle hesaplar.
+- Sonuçları kaydeder ve gösterir.
+- Kafka ile analiz işlemlerini mikroservislere dağıtır.
+- Karar destek (risk derecesi, önerilen adımlar) sağlar.
 
 ## 📁 Proje Dizin Yapısı
 ```
