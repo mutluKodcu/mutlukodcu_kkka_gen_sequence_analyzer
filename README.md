@@ -319,6 +319,8 @@ mutlukodcu_kkka_gen_sequence_analyzer/
 	Dosya yüklendiğinde gene-upload-service → Kafka Producer
 	analysis-service → Kafka Consumer → analiz yap → sonucu PostgreSQL’e kaydet
 * Docker Compose
+* 
+```
 	version: '3.8'
 	services:
 	  postgres:
@@ -337,6 +339,7 @@ mutlukodcu_kkka_gen_sequence_analyzer/
 		build: ./backend/analysis-service
 	  frontend:
 		build: ./frontend
+```
 
 ## 📊 Diyagramlar
 
