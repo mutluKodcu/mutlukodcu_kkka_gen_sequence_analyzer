@@ -1,0 +1,17 @@
+discovery-service/
+├── src/
+│   ├── main/
+│   │   ├── java/com/mutlukodcu/kkka/discovery/
+│   │   │   ├── DiscoveryApplication.java
+│   │   │   ├── config/
+│   │   │   │   └── EurekaServerConfig.java
+│   │   │   └── controller/
+│   │   │       └── HealthCheckController.java
+│   │   ├── resources/
+│   │   │   ├── application.yml
+│   │   │   └── bootstrap.yml
+│   ├── test/
+│   │   └── java/com/mutlukodcu/kkka/discovery/
+│   │       └── DiscoveryServiceTests.java
+├── Dockerfile
+└── pom.xml

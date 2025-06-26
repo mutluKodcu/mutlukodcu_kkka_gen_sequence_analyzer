@@ -1,0 +1,25 @@
+report-service/
+├── src/
+│   ├── main/
+│   │   ├── java/com/mutlukodcu/kkka/report/
+│   │   │   ├── ReportServiceApplication.java
+│   │   │   ├── config/
+│   │   │   │   └── SwaggerConfig.java
+│   │   │   ├── controller/
+│   │   │   │   └── ReportController.java
+│   │   │   ├── dto/
+│   │   │   │   └── ReportRequestDTO.java
+│   │   │   ├── service/
+│   │   │   │   └── ReportService.java
+│   │   │   ├── util/
+│   │   │   │   └── ExcelExporter.java
+│   │   │   └── exception/
+│   │   │       └── ReportException.java
+│   │   ├── resources/
+│   │   │   ├── application.yml
+│   │   │   └── static/
+│   │   └── test/
+│   │       └── java/com/mutlukodcu/kkka/report/
+│   │           └── ReportServiceTests.java
+├── Dockerfile
+└── pom.xml

@@ -1,0 +1,25 @@
+shared-lib/
+├── src/
+│   └── main/
+│       └── java/
+│           └── com/
+│               └── mutlukodcu/
+│                   └── kkka/
+│                       └── shared/
+│                           ├── dto/
+│                           │   ├── UserDTO.java
+│                           │   ├── GeneSequenceDTO.java
+│                           │   ├── AnalysisResultDTO.java   ✅ notification-service bunu kullanıyor
+│                           │
+│                           ├── kafka/
+│                           │   └── events/
+│                           │       └── GeneSequenceEvent.java
+│                           │
+│                           ├── constants/
+│                           │   └── AppConstants.java
+│                           │
+│                           └── utils/
+│                               └── DateUtils.java
+│
+├── pom.xml
+└── README.md

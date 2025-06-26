@@ -1,0 +1,33 @@
+server:
+  port: 8761
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: discovery-service
+
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    register-with-eureka: false     # Discovery servisi kendini Eureka’ya kayıt ettirmez (server olduğu için)
+    fetch-registry: false           # Registry bilgisini almaz (kendisi registry sunucusu)
+  server:
+    wait-time-in-ms-when-sync-empty: 0
+    eviction-interval-timer-in-ms: 60000  # Kayıp servislerin temizlenme süresi (1 dakika)
+
+logging:
+  level:
+    root: INFO
+    com.mutlukodcu.kkka.discovery: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always

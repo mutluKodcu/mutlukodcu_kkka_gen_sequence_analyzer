@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: discovery-service
+
+# Eğer Config Server veya başka merkezi konfigürasyon kullanıyorsan,
+# bu dosyada ilgili ayarları da tutabilirsin.
+# Örnek Config Server URL:
+# spring:
+#   cloud:
+#     config:
+#       uri: http://config-server:8888

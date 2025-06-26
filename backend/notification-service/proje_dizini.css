@@ -1,0 +1,31 @@
+notification-service/
+├── src/main/java/com/mutlukodcu/kkka/notification/
+│   ├── NotificationApplication.java
+│   ├── config/
+│   │   ├── KafkaConsumerConfig.java
+│   │   └── MailConfig.java
+│   ├── controller/
+│   │   └── NotificationController.java   ← test endpoint / ping
+│   ├── dto/
+│   │   ├── NotificationRequestDTO.java
+│   │   └── NotificationStatusDTO.java
+│   ├── kafka/
+│   │   └── listener/AnalysisResultListener.java
+│   ├── model/
+│   │   └── Notification.java
+│   ├── repository/
+│   │   └── NotificationRepository.java
+│   ├── service/
+│   │   ├── NotificationService.java
+│   │   ├── EmailSenderService.java
+│   │   └── NotificationDispatcher.java
+│   └── util/
+│       └── TemplateRenderer.java
+├── src/main/resources/
+│   ├── application.yml
+│   └── templates/analysis-result-email.html
+├── test/java/com/mutlukodcu/kkka/notification/
+│   └── NotificationServiceTests.java
+├── Dockerfile
+├── pom.xml
+└── README.md
