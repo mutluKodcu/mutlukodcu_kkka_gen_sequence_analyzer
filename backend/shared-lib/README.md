@@ -38,7 +38,7 @@ cd backend/shared-lib
 mvn clean install
 
 ## Dizin
-```
+
 src/main/java/com/mutlukodcu/kkka/shared/
 ├── dto/
 ├── kafka/events/
